@@ -1,3 +1,7 @@
+
+import os
+import numpy as np
+from flask import Flask, request, render_template, jsonify
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPool2D, Flatten, Dense
 from tensorflow.keras.preprocessing import image
@@ -15,10 +19,9 @@ model.add(Flatten())
 model.add(Dense(units=128, activation='relu'))
 model.add(Dense(units=1, activation='sigmoid'))
 
-# 2. Load just the learned memories (weights) instead of the whole file!
+# 2. Load just the learned memories (weights) instead of the whole file
 MODEL_PATH = 'cat_dog_model.h5'
 model.load_weights(MODEL_PATH)
-
 # Setup a temporary folder for uploaded images
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
