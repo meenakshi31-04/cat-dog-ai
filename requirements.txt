@@ -1,5 +1,5 @@
 Flask
 Werkzeug
 Pillow
-tensorflow
+tensorflow-cpu
 gunicorn
