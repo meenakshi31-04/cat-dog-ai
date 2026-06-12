@@ -38,3 +38,6 @@ CatDogWebsite/
 └── static/                 
     ├── style.css           # Custom UI animations
     └── script.js           # Client-side logic & API requests
+
+##preview
+https://cat-dog-ai-classifier.onrender.com/
