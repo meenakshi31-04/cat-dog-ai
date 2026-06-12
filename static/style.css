@@ -1,0 +1,29 @@
+/* Smoothly fade in elements */
+.fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom smooth spinner for the loading state */
+.custom-spinner {
+    animation: spin 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+    border-top-color: transparent !important;
+    border-right-color: transparent !important;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Fix for dragover state in Tailwind */
+.border-brand-500 {
+    border-color: #3b82f6 !important;
+}
+.bg-slate-800-force {
+    background-color: #1b2431 !important;
+}
