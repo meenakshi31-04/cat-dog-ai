@@ -1,15 +1,23 @@
-import os
-import numpy as np
-from flask import Flask, request, render_template, jsonify
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPool2D, Flatten, Dense
 from tensorflow.keras.preprocessing import image
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-# Load your trained model
+# 1. Manually build the exact same "brain" structure you had in your notebook
+model = Sequential()
+model.add(Conv2D(filters=32, kernel_size=3, activation='relu', input_shape=[128, 128, 3]))
+model.add(MaxPool2D(pool_size=2, strides=2))
+model.add(Conv2D(filters=32, kernel_size=3, activation='relu'))
+model.add(MaxPool2D(pool_size=2, strides=2))
+model.add(Flatten())
+model.add(Dense(units=128, activation='relu'))
+model.add(Dense(units=1, activation='sigmoid'))
+
+# 2. Load just the learned memories (weights) instead of the whole file!
 MODEL_PATH = 'cat_dog_model.h5'
-model = load_model(MODEL_PATH)
+model.load_weights(MODEL_PATH)
 
 # Setup a temporary folder for uploaded images
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
